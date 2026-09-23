@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 3   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 4   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -48,29 +48,32 @@ $DHPERFIL = @{
   gabu = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }
   fabio = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }
   say = @{ radius = 96; res = 'FOUR_BLOCKS'; threads = 2; ratio = '0.4' }
+  matheus = @{ radius = 256; res = 'BLOCK'; threads = 8; ratio = '0.9' }
 }
 $MURAL = @(
-  @{ quem = 'todos'; txt = 'Rodar este atualizador ANTES de abrir o jogo, sempre.' }
-  @{ quem = 'todos'; txt = 'Se o terreno de longe nao aparecer, rode este atualizador com o jogo FECHADO - ele conserta sozinho.' }
-  @{ quem = 'marcelo'; txt = 'A farm de galinha da base tem 279 galinhas num chunk so. Se travar no login, avisa o Matheus.' }
-  @{ quem = 'marcelo'; txt = 'Voce e op nivel 1: o teleporte do Explorer''s Compass funciona, comando nao. Se /gamemode der ''sem permissao'', esta certo.' }
+  @{ quem = 'todos'; txt = 'Rode este launcher ANTES de abrir o jogo, sempre. Com o Minecraft FECHADO.' }
+  @{ quem = 'todos'; txt = 'NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis de XP.' }
+  @{ quem = 'todos'; txt = 'Garrafa de XP: AGACHE (Shift) e clique direito com uma garrafa de vidro na mao.' }
+  @{ quem = 'todos'; txt = 'Se o terreno de longe sumir, feche o jogo e rode este launcher - ele conserta sozinho.' }
+  @{ quem = 'marcelo'; txt = 'Voce e op nivel 1: o teleporte da bussola funciona, comando nao. Se /gamemode negar, esta certo.' }
   @{ quem = 'marcelo'; txt = 'Testar: marcar uma waystone como Global e ver se o Matheus enxerga sem ter ido la.' }
-  @{ quem = 'gabu'; txt = 'Voce tem 8 GB: seu perfil do Distant Horizons e o DH33_GABRIEL_8GB. Se o terreno distante pesar, avisa.' }
-  @{ quem = 'gabu'; txt = 'Se quiser o contador de FPS na tela (fpsdisplay), pede pro Matheus - ele tirou sem perguntar e reconheceu o erro.' }
-  @{ quem = 'fabio'; txt = 'Voce ainda nao esta no ops.json do servidor. Sem isso o teleporte do Explorer''s Compass nao funciona - pede pro Matheus.' }
-  @{ quem = 'fabio'; txt = 'A waystone ''Tumulo do Fabio'' ainda esta la, global.' }
-  @{ quem = 'say'; txt = 'Poe uma waystone chamada exatamente ''base'', minuscula, e marca Global. Ja existe uma - confirma que esta global.' }
-  @{ quem = 'say'; txt = 'Seu mundo tem 169 pecas de Aquamirae: o labirinto de gelo e a Cornelia estao no SEU servidor, nao no dos Brothers.' }
-  @{ quem = 'say'; txt = 'Seu PC nao tem placa dedicada. Seu perfil do DH e o DH33_SAY_8GB_sem_dGPU - nao mexe nas opcoes de DH sem falar com o Matheus.' }
+  @{ quem = 'gabu'; txt = 'Voce tem 8 GB. Seu Distant Horizons ja vem ajustado pra sua maquina - nao mexa nas opcoes dele.' }
+  @{ quem = 'gabu'; txt = 'O contador de FPS (fpsdisplay) agora e seu tambem. Tem tecla pra ligar e desligar.' }
+  @{ quem = 'fabio'; txt = 'Voce ja esta no ops.json - o teleporte da bussola do Explorer''s Compass funciona agora.' }
+  @{ quem = 'fabio'; txt = 'A waystone ''Tumulo do Fabio'' continua la, global.' }
+  @{ quem = 'say'; txt = 'Confirma se o botao de teleporte no inventario funciona. A waystone ''base'' ja esta global.' }
+  @{ quem = 'say'; txt = 'Seu mundo tem 169 pecas de Aquamirae: o labirinto de gelo e a Cornelia estao no SEU servidor.' }
+  @{ quem = 'say'; txt = 'Seu PC nao tem placa dedicada. O Distant Horizons ja vem ajustado - nao mexa nas opcoes.' }
   @{ quem = 'say'; txt = 'O End e o Otherside do seu mundo ainda nao existem. Se quiser ir, o Matheus precisa gerar antes.' }
 )
 $PERKS = @(
-  'Garrafa de XP: AGACHADO (Shift) + clique direito com uma garrafa de vidro na mao. So funciona se voce tiver 40 de XP bruto (nivel 4 saindo do zero). Custa meio coracao.'
-  'Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia, igual orbe de XP. Pra guardar nivel, bebe com o equipamento de Mending DESEQUIPADO.'
+  'Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis, perto ou longe.'
+  'Garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro. Guarda 100 de XP bruto e custa meio coracao.'
+  'Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia. Pra guardar nivel, bebe DESEQUIPADO.'
+  'A garrafa de XP se BEBE, nao se joga no chao. Jogar no chao perde quase tudo.'
   'A garrafa de XP nao funciona se o meio coracao de dano te mataria. Cura primeiro.'
-  'A garrafa de XP se BEBE, nao se joga no chao. Jogar no chao perde XP.'
-  'Uma garrafa de XP guarda 4 niveis e paga o teleporte pro tumulo com sobra.'
-  'Morreu longe? Abre a bussola da morte e paga 3 niveis pra voltar pro tumulo. Fica 5s parado e chega invencivel por 10s.'
+  'Morreu longe? Abre a bussola da morte e paga 3 niveis pra voltar. Fica 5s parado e chega com 15s de invencibilidade.'
+  'Nao quer se teleportar pro tumulo? /graves list, clica no tumulo e usa FETCH: traz as coisas ate voce, de graca.'
   'Maca dourada encantada tem receita neste modpack, e devolve 3 coracoes de vida maxima.'
   'O Bundle voltou: 3 linha em cima, 6 couro embaixo.'
   'Item no chao dura 15 min. Os valiosos nao somem nunca. Lixo (pedra, terra, semente, ovo) some em 1-2 min.'
@@ -82,13 +85,14 @@ $PERKS = @(
   'Tem 4 Void Blossom no mapa dos Brothers. O mais perto: X -680 Z 328.'
   '3 Gauntlet no Nether dos Brothers: -280/-792, -872/-296, -952/-872.'
   'O Stalker do Deeper Dark ja tem templo gerado no Otherside.'
+  'A Cornelia (chefe do Aquamirae) vive no labirinto de gelo, no fundo do oceano frio.'
   'Barco de obsidiana anda na LAVA. Nao flutua em agua.'
   'O IPN tem 5 perfis de inventario com tecla rapida: Combate, Mineracao, Exploracao.'
   'Da pra travar um slot do inventario (IPN) e a ordenacao automatica pula ele.'
   'Tem lista de tarefas compartilhada no servidor (TeamTasks): o que um cria, os outros veem.'
   'Da pra juntar 3 pocoes numa Potion Blending Combiner.'
   '2 slabs iguais viram bloco cheio de volta (Deslabification).'
-  'Se voce roda Chunky e voa ao mesmo tempo, o Distant Horizons deixa buracos no terreno. Roda o Chunky, espera acabar, depois voa.'
+  'Se voce roda Chunky e voa ao mesmo tempo, o Distant Horizons deixa buracos no terreno.'
   'O primeiro boot depois de atualizar o Distant Horizons e lento: ele converte o banco de terreno. Deixa terminar.'
   'Nao mexa nas opcoes do Distant Horizons por conta propria - tem um perfil pronto pra sua maquina.'
 )
@@ -235,13 +239,13 @@ if (-not $EU) {
     $op = '1'
     try {
         $op = [Microsoft.VisualBasic.Interaction]::InputBox(
-            "Quem esta neste computador?`n`n1 = Marcelo (Tensei)`n2 = Gabu (Gabutre)`n3 = Fabio (fabium)`n4 = Say (sayu)",
+            "Quem esta neste computador?`n`n1 = Marcelo (Tensei)`n2 = Gabu (Gabutre)`n3 = Fabio (fabium)`n4 = Say (sayu)`n5 = Matheus (mmcadora)",
             'Primeira vez', '1')
     } catch {
         # se o InputBox nao existir nesta maquina, pergunta pelo console
-        $op = Read-Host 'Quem e voce? 1=Marcelo 2=Gabu 3=Fabio 4=Say'
+        $op = Read-Host 'Quem e voce? 1=Marcelo 2=Gabu 3=Fabio 4=Say 5=Matheus'
     }
-    switch ($op) { '1'{$EU='marcelo'} '2'{$EU='gabu'} '3'{$EU='fabio'} '4'{$EU='say'} default{$EU='todos'} }
+    switch ($op) { '1'{$EU='marcelo'} '2'{$EU='gabu'} '3'{$EU='fabio'} '4'{$EU='say'} '5'{$EU='matheus'} default{$EU='todos'} }
     CfgGravar 'perfil' $EU
 }
 $TSub.Text = "perfil: $EU   |   instalacao: $MC   |   lista: $origemLista   |   launcher v$VERSAO"
