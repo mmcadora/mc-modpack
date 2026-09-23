@@ -21,7 +21,7 @@ Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
 $VERSAO = 3   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
-$BASE_URL = 'https://raw.githubusercontent.com/SEUUSER/mc-modpack/main'
+$BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # Lista embutida: vale se o GitHub nao responder (ou se ainda nao existir)
@@ -167,6 +167,7 @@ try { $pk = (Baixar 'perks.txt') -split "`r?`n" | Where-Object { $_.Trim() -ne '
 # ---------------- janela ----------------
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Modpack dos Brothers" Height="620" Width="860"
         WindowStartupLocation="CenterScreen" Background="#1b1b1f" ResizeMode="CanMinimize">
   <Grid Margin="14">
