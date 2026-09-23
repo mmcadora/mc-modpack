@@ -1,0 +1,15 @@
+VERSAO	2026-09-23 1
+MOD	kubejs-fabric-2001.6.5-build.26.jar	08d70c86bb9501eeaf936722784c09de18f0e32f	0	todos	https://cdn.modrinth.com/data/umyGl7zF/versions/Pu0Ygbq6/kubejs-fabric-2001.6.5-build.26.jar
+MOD	rhino-fabric-2001.2.3-build.10.jar	a1fd74cf31c0bf959803870c1ac3d918ae66fc1e	0	todos	https://cdn.modrinth.com/data/sk9knFPE/versions/MLIu0Tct/rhino-fabric-2001.2.3-build.10.jar
+MOD	fpsdisplay-3.1.0+1.20.x.jar	aec4dc9e2105578dd463bd733725199e93857d9f	0	todos	https://cdn.modrinth.com/data/DIlqwRFH/versions/WaO5IB1q/fpsdisplay-3.1.0%2B1.20.x.jar
+MOD	DistantHorizons-3.3.0-1.20.1-fabric-forge.jar	d144553e1b20f11343b1d1e4d5a5a3673563e949	0	todos	https://cdn.modrinth.com/data/uCdwusMi/versions/10i2Xjtv/DistantHorizons-3.3.0-1.20.1-fabric-forge.jar
+MOD	iris-1.7.5+mc1.20.1.jar	613d3e28f4c0744a049f2583a25c2f36bd8537d9	0	todos	https://cdn.modrinth.com/data/YL57xq9U/versions/Bi9nvICq/iris-1.7.5%2Bmc1.20.1.jar
+MOD	mapsyncer-1.0.3-fabric-1.20.1.jar	c725b5e7079d7fe0c42fbc3a7a628c269a1c9784	0	todos	https://cdn.modrinth.com/data/AW5A8Q2T/versions/pEx7Onlg/mapsyncer-1.0.3-fabric-1.20.1.jar
+MOD	portablespawner-fabric-1.20.1-1.0.1.jar	df1a9b5ac9252c914a1a905723413379663069d9	0	todos	https://cdn.modrinth.com/data/TASFM9Js/versions/okNsHv0u/portablespawner-fabric-1.20.1-1.0.1.jar
+MOD	Too Many Entities 1.20.1 Fabric v1.1.1.jar	9c8a31a3d83c135865cae12a01d428fae3dc237c	0	todos	https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar
+MOD	xmmp-0.3.2+1.20.1-fabric.jar	5a70fa2c7411a4af03016aea8bf93f4c05b080f0	0	todos	https://cdn.modrinth.com/data/stTaMuWa/versions/Ofe69fhn/xmmp-0.3.2%2B1.20.1-fabric.jar
+SAI	emi-1.1.24+1.20.1+fabric.jar
+SAI	nearbycrafting-1.0.3.jar
+SAI	recipebookaccess-1.1.0.jar
+SAI	DistantHorizons-2.1.2-a-1.20.1-forge-fabric.jar
+SAI	iris-1.7.2+mc1.20.1.jar

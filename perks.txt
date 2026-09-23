@@ -1,0 +1,26 @@
+Garrafa de XP: AGACHADO (Shift) + clique direito com uma garrafa de vidro na mao. So funciona se voce tiver 40 de XP bruto (nivel 4 saindo do zero). Custa meio coracao.
+Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia, igual orbe de XP. Pra guardar nivel, bebe com o equipamento de Mending DESEQUIPADO.
+A garrafa de XP nao funciona se o meio coracao de dano te mataria. Cura primeiro.
+A garrafa de XP se BEBE, nao se joga no chao. Jogar no chao perde XP.
+Uma garrafa de XP guarda 4 niveis e paga o teleporte pro tumulo com sobra.
+Morreu longe? Abre a bussola da morte e paga 3 niveis pra voltar pro tumulo. Fica 5s parado e chega invencivel por 10s.
+Maca dourada encantada tem receita neste modpack, e devolve 3 coracoes de vida maxima.
+O Bundle voltou: 3 linha em cima, 6 couro embaixo.
+Item no chao dura 15 min. Os valiosos nao somem nunca. Lixo (pedra, terra, semente, ovo) some em 1-2 min.
+O mapa do Xaero e COMPARTILHADO: o que um explora aparece no mapa dos outros.
+Da pra pegar spawner e levar junto (PortableSpawner).
+Perto de farm com muito mob, o Too Many Entities esconde o excesso pra ganhar FPS. Configuravel no Mod Menu.
+O servidor dos Brothers tem Bumblezone e Otherside (Deeper Dark) gerados. Ja foi?
+O Ancient City mais perto da base dos Brothers fica em X -264 Z 504.
+Tem 4 Void Blossom no mapa dos Brothers. O mais perto: X -680 Z 328.
+3 Gauntlet no Nether dos Brothers: -280/-792, -872/-296, -952/-872.
+O Stalker do Deeper Dark ja tem templo gerado no Otherside.
+Barco de obsidiana anda na LAVA. Nao flutua em agua.
+O IPN tem 5 perfis de inventario com tecla rapida: Combate, Mineracao, Exploracao.
+Da pra travar um slot do inventario (IPN) e a ordenacao automatica pula ele.
+Tem lista de tarefas compartilhada no servidor (TeamTasks): o que um cria, os outros veem.
+Da pra juntar 3 pocoes numa Potion Blending Combiner.
+2 slabs iguais viram bloco cheio de volta (Deslabification).
+Se voce roda Chunky e voa ao mesmo tempo, o Distant Horizons deixa buracos no terreno. Roda o Chunky, espera acabar, depois voa.
+O primeiro boot depois de atualizar o Distant Horizons e lento: ele converte o banco de terreno. Deixa terminar.
+Nao mexa nas opcoes do Distant Horizons por conta propria - tem um perfil pronto pra sua maquina.

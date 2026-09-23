@@ -1,0 +1,13 @@
+todos	Rodar este atualizador ANTES de abrir o jogo, sempre.
+todos	Se o terreno de longe nao aparecer, rode este atualizador com o jogo FECHADO - ele conserta sozinho.
+marcelo	A farm de galinha da base tem 279 galinhas num chunk so. Se travar no login, avisa o Matheus.
+marcelo	Voce e op nivel 1: o teleporte do Explorer's Compass funciona, comando nao. Se /gamemode der 'sem permissao', esta certo.
+marcelo	Testar: marcar uma waystone como Global e ver se o Matheus enxerga sem ter ido la.
+gabu	Voce tem 8 GB: seu perfil do Distant Horizons e o DH33_GABRIEL_8GB. Se o terreno distante pesar, avisa.
+gabu	Se quiser o contador de FPS na tela (fpsdisplay), pede pro Matheus - ele tirou sem perguntar e reconheceu o erro.
+fabio	Voce ainda nao esta no ops.json do servidor. Sem isso o teleporte do Explorer's Compass nao funciona - pede pro Matheus.
+fabio	A waystone 'Tumulo do Fabio' ainda esta la, global.
+say	Poe uma waystone chamada exatamente 'base', minuscula, e marca Global. Ja existe uma - confirma que esta global.
+say	Seu mundo tem 169 pecas de Aquamirae: o labirinto de gelo e a Cornelia estao no SEU servidor, nao no dos Brothers.
+say	Seu PC nao tem placa dedicada. Seu perfil do DH e o DH33_SAY_8GB_sem_dGPU - nao mexe nas opcoes de DH sem falar com o Matheus.
+say	O End e o Otherside do seu mundo ainda nao existem. Se quiser ir, o Matheus precisa gerar antes.
