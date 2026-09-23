@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 4   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 5   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -157,7 +157,9 @@ try {
     $novoE = @(); $novoS = @()
     foreach ($l in ($txt -split "`r?`n")) {
         $p = $l -split "`t"
-        if ($p[0] -eq 'MOD' -and $p.Count -ge 6) { $novoE += @{ n = $p[1]; sha = $p[3].ToLower(); url = $p[5] } }
+        # R#131: era $p[3] -- o sha1 esta na coluna 2. $p[3] vale "0", entao
+        # TODO download baixava certo e era rejeitado na conferencia de hash.
+        if ($p[0] -eq 'MOD' -and $p.Count -ge 6) { $novoE += @{ n = $p[1]; sha = $p[2].Trim().ToLower(); url = $p[5].Trim() } }
         elseif ($p[0] -eq 'SAI' -and $p.Count -ge 2) { $novoS += $p[1] }
     }
     if ($novoE.Count -gt 0) { $ENTRAM = $novoE; $SAEM = $novoS; $origemLista = 'GitHub' }
@@ -234,6 +236,12 @@ function UI($texto, $pct) {
 }
 
 # ---------------- quem e voce ----------------
+# R#131: o launcher.cfg do Matheus foi junto no zip e o Fabio rodou como
+# "perfil: matheus" (e com o caminho do sklauncher dele). O cfg agora carimba
+# o usuario do Windows; se nao for desta maquina, ele e descartado inteiro.
+if ((Test-Path -LiteralPath $CFG) -and ((CfgLer 'usuario') -ne $env:USERNAME)) {
+    Remove-Item -LiteralPath $CFG -Force -ErrorAction SilentlyContinue
+}
 $EU = CfgLer 'perfil'
 if (-not $EU) {
     $op = '1'
@@ -247,6 +255,7 @@ if (-not $EU) {
     }
     switch ($op) { '1'{$EU='marcelo'} '2'{$EU='gabu'} '3'{$EU='fabio'} '4'{$EU='say'} '5'{$EU='matheus'} default{$EU='todos'} }
     CfgGravar 'perfil' $EU
+    CfgGravar 'usuario' $env:USERNAME
 }
 $TSub.Text = "perfil: $EU   |   instalacao: $MC   |   lista: $origemLista   |   launcher v$VERSAO"
 
@@ -271,7 +280,7 @@ $w.Add_ContentRendered({
         UI 'FECHE O MINECRAFT E O LAUNCHER, depois abra este de novo.' 0
         return
     }
-    $rem = 0; $novos = 0; $falhas = 0
+    $rem = 0; $novos = 0; $falhas = 0; $motivos = @(); $erro = ''
 
     UI 'Removendo mods aposentados...' 5
     foreach ($n in $SAEM) {
@@ -294,9 +303,25 @@ $w.Add_ContentRendered({
         }
         UI ("Baixando " + $m.n + " ...") $pct
         $tmp = Join-Path $env:TEMP ('_dl_' + [guid]::NewGuid().ToString() + '.part')
-        try { Invoke-WebRequest -Uri $m.url -OutFile $tmp -UseBasicParsing -TimeoutSec 900 }
-        catch { $falhas++; continue }
-        if ((Get-FileHash -LiteralPath $tmp -Algorithm SHA1).Hash.ToLower() -ne $m.sha) {
+        # R#131: antes o motivo da falha morria no catch e nao dava pra
+        # diagnosticar de longe. Agora cada falha escreve a causa no log.
+        $baixou = $false
+        foreach ($tentativa in 1, 2) {
+            try {
+                Invoke-WebRequest -Uri $m.url -OutFile $tmp -UseBasicParsing -TimeoutSec 900 `
+                    -UserAgent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) launcher-brothers'
+                $baixou = $true; break
+            } catch {
+                $erro = $_.Exception.Message
+                Write-Host ("FALHA DOWNLOAD [" + $m.n + "] tentativa " + $tentativa + ": " + $erro)
+                Start-Sleep -Seconds 2
+            }
+        }
+        if (-not $baixou) { $falhas++; $motivos += ('baixar ' + $m.n + ': ' + $erro); continue }
+        $hReal = (Get-FileHash -LiteralPath $tmp -Algorithm SHA1).Hash.ToLower()
+        if ($hReal -ne $m.sha) {
+            Write-Host ("FALHA HASH [" + $m.n + "] esperado=" + $m.sha + " obtido=" + $hReal)
+            $motivos += ('hash de ' + $m.n)
             Remove-Item -LiteralPath $tmp -Force; $falhas++; continue
         }
         $idNovo = ModId $tmp
@@ -372,9 +397,13 @@ $w.Add_ContentRendered({
     }
 
     $msg = "Pronto. baixados: $novos  ·  removidos: $rem  ·  DH consertado: $dhFix"
-    if ($falhas -gt 0) { $msg += "  ·  $falhas falha(s) - rode de novo depois" }
+    if ($falhas -gt 0) { $msg += "  ·  $falhas falha(s): " + (($motivos | Select-Object -First 2) -join ' / ') }
     UI $msg 100
-    $TRodape.Text = "log completo em _LAUNCHER\ultimo-run.log"
+    if ($falhas -gt 0) {
+        $TRodape.Text = "NAO ENTRE NO SERVIDOR. Manda o _LAUNCHER\ultimo-run.log pro Matheus."
+    } else {
+        $TRodape.Text = "log completo em _LAUNCHER\ultimo-run.log"
+    }
     $BJogar.IsEnabled = $true
 })
 
