@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 5   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 7   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -50,10 +50,15 @@ $DHPERFIL = @{
   say = @{ radius = 96; res = 'FOUR_BLOCKS'; threads = 2; ratio = '0.4' }
   matheus = @{ radius = 256; res = 'BLOCK'; threads = 8; ratio = '0.9' }
 }
+# nome antigo da pasta de LOD (campo "effects") -> nome novo (caminho da dimensao)
+$DHNOMES = @{
+  'otherside_effects'         = 'otherside'
+  'dimension_special_effects' = 'the_bumblezone'
+}
 $MURAL = @(
   @{ quem = 'todos'; txt = 'Rode este launcher ANTES de abrir o jogo, sempre. Com o Minecraft FECHADO.' }
   @{ quem = 'todos'; txt = 'NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis de XP.' }
-  @{ quem = 'todos'; txt = 'Garrafa de XP: AGACHE (Shift) e clique direito com uma garrafa de vidro na mao.' }
+  @{ quem = 'todos'; txt = 'Garrafa de XP: AGACHE (Shift) + clique direito com garrafa de vidro. Precisa ja ter 100 de XP bruto (nivel 8) senao nao acontece nada. Pra beber, SEGURA o clique direito.' }
   @{ quem = 'todos'; txt = 'Se o terreno de longe sumir, feche o jogo e rode este launcher - ele conserta sozinho.' }
   @{ quem = 'marcelo'; txt = 'Voce e op nivel 1: o teleporte da bussola funciona, comando nao. Se /gamemode negar, esta certo.' }
   @{ quem = 'marcelo'; txt = 'Testar: marcar uma waystone como Global e ver se o Matheus enxerga sem ter ido la.' }
@@ -68,8 +73,12 @@ $MURAL = @(
 )
 $PERKS = @(
   'Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis, perto ou longe.'
-  'Garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro. Guarda 100 de XP bruto e custa meio coracao.'
+  'CRIAR garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro na mao. Voce precisa JA TER 100 de XP bruto guardado (nivel 8 saindo do zero). Com menos que isso nao acontece NADA, sem mensagem nenhuma - nao esta bugado.'
   'Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia. Pra guardar nivel, bebe DESEQUIPADO.'
+  'BEBER garrafa de XP: SEGURA o clique direito, nao clica rapido. Leva 0,4s e devolve a garrafa de vidro vazia.'
+  'Beber AGACHADO bebe a PILHA TODA de uma vez. Em pe, bebe uma garrafa so. Cuidado com 30 garrafas na mao.'
+  'A garrafa devolve exatamente os 100 de XP que custou. Ela e um cofre de XP, nao uma fonte - serve pra nao perder XP ao morrer.'
+  '100 de XP bruto e meio nivel no nivel 20 e um terco de nivel no nivel 50. Nao esta rendendo menos, e a curva do Minecraft que sobe.'
   'A garrafa de XP se BEBE, nao se joga no chao. Jogar no chao perde quase tudo.'
   'A garrafa de XP nao funciona se o meio coracao de dano te mataria. Cura primeiro.'
   'Morreu longe? Abre a bussola da morte e paga 3 niveis pra voltar. Fica 5s parado e chega com 15s de invencibilidade.'
@@ -346,7 +355,16 @@ $w.Add_ContentRendered({
             foreach ($v in ($dirs | Where-Object { $_.Name -notlike '*@@*' })) {
                 $sql = Get-ChildItem -LiteralPath $v.FullName -Filter 'DistantHorizons.sqlite*' -ErrorAction SilentlyContinue
                 if (-not $sql) { continue }
-                $par = $dirs | Where-Object { $_.Name -like ('*@@' + $v.Name) } | Select-Object -First 1
+                # R#135: o DH 2.x nomeava a pasta pelo campo "effects" do dimension_type,
+                # e o 3.3 nomeia pelo caminho da dimensao. Coincide no overworld e no
+                # nether, e NAO coincide em dimensao modada - por isso a mensagem de LOD
+                # continuava aparecendo no Bumblezone e no Otherside mesmo depois de
+                # rodar o launcher. Nomes conferidos nos dimension_type dos jars:
+                #   deeperdarker:otherside_effects            -> @@otherside
+                #   the_bumblezone:dimension_special_effects  -> @@the_bumblezone
+                $alvo = $v.Name
+                if ($DHNOMES.ContainsKey($v.Name)) { $alvo = $DHNOMES[$v.Name] }
+                $par = $dirs | Where-Object { $_.Name -like ('*@@' + $alvo) } | Select-Object -First 1
                 if (-not $par) { continue }
                 if (Get-ChildItem -LiteralPath $par.FullName -Filter 'DistantHorizons.sqlite*' -ErrorAction SilentlyContinue) { continue }
                 foreach ($f in $sql) { Move-Item -LiteralPath $f.FullName -Destination $par.FullName -Force }
