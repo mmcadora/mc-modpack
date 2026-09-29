@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 7   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 8   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -35,6 +35,8 @@ $ENTRAM = @(
   @{ n = 'portablespawner-fabric-1.20.1-1.0.1.jar'; sha = 'df1a9b5ac9252c914a1a905723413379663069d9'; url = 'https://cdn.modrinth.com/data/TASFM9Js/versions/okNsHv0u/portablespawner-fabric-1.20.1-1.0.1.jar' }
   @{ n = 'Too Many Entities 1.20.1 Fabric v1.1.1.jar'; sha = '9c8a31a3d83c135865cae12a01d428fae3dc237c'; url = 'https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar' }
   @{ n = 'xmmp-0.3.2+1.20.1-fabric.jar'; sha = '5a70fa2c7411a4af03016aea8bf93f4c05b080f0'; url = 'https://cdn.modrinth.com/data/stTaMuWa/versions/Ofe69fhn/xmmp-0.3.2%2B1.20.1-fabric.jar' }
+  @{ n = 'EasyAnvils-v8.0.2-1.20.1-Fabric.jar'; sha = 'c889871e3cbd51d513139050069cfc30e0254dac'; url = 'https://cdn.modrinth.com/data/OZBR5JT5/versions/pA1enJAS/EasyAnvils-v8.0.2-1.20.1-Fabric.jar' }
+
 )
 $SAEM = @(
   'emi-1.1.24+1.20.1+fabric.jar'
