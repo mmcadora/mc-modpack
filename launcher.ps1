@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 8   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 11   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -35,10 +35,10 @@ $ENTRAM = @(
   @{ n = 'portablespawner-fabric-1.20.1-1.0.1.jar'; sha = 'df1a9b5ac9252c914a1a905723413379663069d9'; url = 'https://cdn.modrinth.com/data/TASFM9Js/versions/okNsHv0u/portablespawner-fabric-1.20.1-1.0.1.jar' }
   @{ n = 'Too Many Entities 1.20.1 Fabric v1.1.1.jar'; sha = '9c8a31a3d83c135865cae12a01d428fae3dc237c'; url = 'https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar' }
   @{ n = 'xmmp-0.3.2+1.20.1-fabric.jar'; sha = '5a70fa2c7411a4af03016aea8bf93f4c05b080f0'; url = 'https://cdn.modrinth.com/data/stTaMuWa/versions/Ofe69fhn/xmmp-0.3.2%2B1.20.1-fabric.jar' }
-  @{ n = 'EasyAnvils-v8.0.2-1.20.1-Fabric.jar'; sha = 'c889871e3cbd51d513139050069cfc30e0254dac'; url = 'https://cdn.modrinth.com/data/OZBR5JT5/versions/pA1enJAS/EasyAnvils-v8.0.2-1.20.1-Fabric.jar' }
-
+  @{ n = 'TaxFreeLevels-1.4.23-fabric-1.20.1.jar'; sha = '36a816dd8d1cc1e3f52d12793b5197339ad97cf2'; url = 'https://cdn.modrinth.com/data/jCBrrLTs/versions/R7TeQeOo/TaxFreeLevels-1.4.23-fabric-1.20.1.jar' }
 )
 $SAEM = @(
+  'EasyAnvils-v8.0.2-1.20.1-Fabric.jar'
   'emi-1.1.24+1.20.1+fabric.jar'
   'nearbycrafting-1.0.3.jar'
   'recipebookaccess-1.1.0.jar'
@@ -59,7 +59,7 @@ $DHNOMES = @{
 }
 $MURAL = @(
   @{ quem = 'todos'; txt = 'Rode este launcher ANTES de abrir o jogo, sempre. Com o Minecraft FECHADO.' }
-  @{ quem = 'todos'; txt = 'NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis de XP.' }
+  @{ quem = 'todos'; txt = 'NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa 3 niveis de XP, sempre.' }
   @{ quem = 'todos'; txt = 'Garrafa de XP: AGACHE (Shift) + clique direito com garrafa de vidro. Precisa ja ter 100 de XP bruto (nivel 8) senao nao acontece nada. Pra beber, SEGURA o clique direito.' }
   @{ quem = 'todos'; txt = 'Se o terreno de longe sumir, feche o jogo e rode este launcher - ele conserta sozinho.' }
   @{ quem = 'marcelo'; txt = 'Voce e op nivel 1: o teleporte da bussola funciona, comando nao. Se /gamemode negar, esta certo.' }
@@ -74,7 +74,7 @@ $MURAL = @(
   @{ quem = 'say'; txt = 'O End e o Otherside do seu mundo ainda nao existem. Se quiser ir, o Matheus precisa gerar antes.' }
 )
 $PERKS = @(
-  'Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis, perto ou longe.'
+  'Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa 3 niveis, sempre - perto, longe ou entre dimensoes.'
   'CRIAR garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro na mao. Voce precisa JA TER 100 de XP bruto guardado (nivel 8 saindo do zero). Com menos que isso nao acontece NADA, sem mensagem nenhuma - nao esta bugado.'
   'Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia. Pra guardar nivel, bebe DESEQUIPADO.'
   'BEBER garrafa de XP: SEGURA o clique direito, nao clica rapido. Leva 0,4s e devolve a garrafa de vidro vazia.'

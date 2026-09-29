@@ -1,4 +1,4 @@
-Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis, perto ou longe.
+Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa 3 niveis, sempre - perto, longe ou entre dimensoes.
 CRIAR garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro na mao. Voce precisa JA TER 100 de XP bruto guardado (nivel 8 saindo do zero). Com menos que isso nao acontece NADA, sem mensagem nenhuma - nao esta bugado.
 Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia. Pra guardar nivel, bebe DESEQUIPADO.
 BEBER garrafa de XP: SEGURA o clique direito, nao clica rapido. Leva 0,4s e devolve a garrafa de vidro vazia.

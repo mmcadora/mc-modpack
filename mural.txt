@@ -1,5 +1,5 @@
 todos	Rode este launcher ANTES de abrir o jogo, sempre. Com o Minecraft FECHADO.
-todos	NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa de 3 a 5 niveis de XP.
+todos	NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa 3 niveis de XP, sempre.
 todos	Garrafa de XP: AGACHE (Shift) + clique direito com garrafa de vidro. Precisa ja ter 100 de XP bruto (nivel 8) senao nao acontece nada. Pra beber, SEGURA o clique direito.
 todos	Se o terreno de longe sumir, feche o jogo e rode este launcher - ele conserta sozinho.
 marcelo	Voce e op nivel 1: o teleporte da bussola funciona, comando nao. Se /gamemode negar, esta certo.
