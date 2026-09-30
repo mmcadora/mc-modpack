@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 11   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 13   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -36,8 +36,12 @@ $ENTRAM = @(
   @{ n = 'Too Many Entities 1.20.1 Fabric v1.1.1.jar'; sha = '9c8a31a3d83c135865cae12a01d428fae3dc237c'; url = 'https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar' }
   @{ n = 'xmmp-0.3.2+1.20.1-fabric.jar'; sha = '5a70fa2c7411a4af03016aea8bf93f4c05b080f0'; url = 'https://cdn.modrinth.com/data/stTaMuWa/versions/Ofe69fhn/xmmp-0.3.2%2B1.20.1-fabric.jar' }
   @{ n = 'TaxFreeLevels-1.4.23-fabric-1.20.1.jar'; sha = '36a816dd8d1cc1e3f52d12793b5197339ad97cf2'; url = 'https://cdn.modrinth.com/data/jCBrrLTs/versions/R7TeQeOo/TaxFreeLevels-1.4.23-fabric-1.20.1.jar' }
+  @{ n = 'Controlling-fabric-1.20.1-12.0.2.jar'; sha = '8a61ca1600e33c73598530f1e208bb07081fdcd6'; url = 'https://cdn.modrinth.com/data/xv94TkTM/versions/RaJMVsRg/Controlling-fabric-1.20.1-12.0.2.jar' }
+  @{ n = 'Searchables-fabric-1.20.1-1.0.3.jar'; sha = 'd7cbd06088a90f8adfd4bb9a99d1c256bcdf22a1'; url = 'https://cdn.modrinth.com/data/fuuu3xnx/versions/eh4IBlu2/Searchables-fabric-1.20.1-1.0.3.jar' }
+  @{ n = 'trashcans-1.1.1a-fabric-mc1.20.4.jar'; sha = 'c7b37868c9aae658cac9c578f7a520d089a3a822'; url = 'https://cdn.modrinth.com/data/4QrnfueM/versions/JJTVcWnj/trashcans-1.1.1a-fabric-mc1.20.4.jar' }
 )
 $SAEM = @(
+  'trashcans-1.1.0-fabric-mc1.20.4.jar'
   'EasyAnvils-v8.0.2-1.20.1-Fabric.jar'
   'emi-1.1.24+1.20.1+fabric.jar'
   'nearbycrafting-1.0.3.jar'
@@ -45,6 +49,11 @@ $SAEM = @(
   'DistantHorizons-2.1.2-a-1.20.1-forge-fabric.jar'
   'iris-1.7.2+mc1.20.1.jar'
 )
+# R#156: endereco do servidor dos Brothers. VAZIO = nao mexe em nada (igual a v12).
+# Quem liga e a linha  SERVIDOR<TAB>host:porta  no lista.txt do GitHub, no dia da mudanca.
+$SERVIDOR = $null
+# id do mundo dos Brothers no Xaero (servidor-fabric-2\world\xaeromap.txt)
+$XAERO_ID = '-1059433244'
 $DHPERFIL = @{
   marcelo = @{ radius = 192; res = 'BLOCK'; threads = 6; ratio = '0.8' }
   gabu = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }
@@ -144,6 +153,209 @@ function ModId($jar) {
     return $null
 }
 
+# ---------------- R#156 · apontar pro servidor novo (v13) ----------------
+# Liga SO se o lista.txt do GitHub tiver a linha  SERVIDOR<TAB>host:porta.
+# 1) Xaero: a pasta de waypoints e "Multiplayer_" + host SEM porta (lido no
+#    bytecode do Xaero). Trocar de endereco = pasta nova e vazia. Aqui a gente
+#    acha a pasta que tem o mundo dos Brothers (arquivo mw$<id>_*.txt, id do
+#    world\xaeromap.txt do servidor) e copia pro nome novo, SEM sobrescrever nada.
+# 2) servers.dat: acha a entrada que usa esse mesmo host e troca SO o endereco.
+#    O NOME fica -> o Distant Horizons (serverFolderNameMode = NAME_ONLY) acha
+#    o LOD de sempre. Sem entrada achada, cria "Brothers (NeonHost)".
+# O NBT e lido guardando os BYTES originais de cada valor: o arquivo volta
+# identico, menos o endereco trocado (nome com acento/emoji nao e recodificado).
+$NBT_TAM = @{ 1 = 1; 2 = 2; 3 = 4; 4 = 8; 5 = 4; 6 = 8 }
+function NbtU16([byte[]]$b, [int]$i) { return ([int]$b[$i] * 256) + [int]$b[$i + 1] }
+function NbtI32([byte[]]$b, [int]$i) {
+    return ([int]$b[$i] -shl 24) -bor ([int]$b[$i + 1] -shl 16) -bor ([int]$b[$i + 2] -shl 8) -bor [int]$b[$i + 3]
+}
+function NbtFatia([byte[]]$b, [int]$i, [int]$n) {
+    $r = New-Object byte[] ([Math]::Max(0, $n))
+    if ($n -gt 0) { [Array]::Copy($b, $i, $r, 0, $n) }
+    return ,$r
+}
+function NbtStr([string]$txt) {
+    $raw = [Text.Encoding]::UTF8.GetBytes($txt)
+    return @{ t = 8; raw = $raw; txt = $txt }
+}
+function NbtLe([byte[]]$b, [int]$t) {
+    $i = $script:nbtI
+    if ($NBT_TAM.ContainsKey($t)) {
+        $n = $NBT_TAM[$t]; $script:nbtI = $i + $n
+        return @{ t = $t; raw = (NbtFatia $b $i $n) }
+    }
+    if ($t -eq 8) {
+        $n = NbtU16 $b $i; $script:nbtI = $i + 2 + $n
+        $raw = NbtFatia $b ($i + 2) $n
+        return @{ t = 8; raw = $raw; txt = [Text.Encoding]::UTF8.GetString($raw) }
+    }
+    if ($t -eq 7 -or $t -eq 11 -or $t -eq 12) {
+        $n = NbtI32 $b $i; $larg = 1
+        if ($t -eq 11) { $larg = 4 }
+        if ($t -eq 12) { $larg = 8 }
+        $tot = 4 + $n * $larg; $script:nbtI = $i + $tot
+        return @{ t = $t; raw = (NbtFatia $b $i $tot) }
+    }
+    if ($t -eq 9) {
+        $et = [int]$b[$i]; $n = NbtI32 $b ($i + 1); $script:nbtI = $i + 5
+        $itens = New-Object System.Collections.ArrayList
+        for ($k = 0; $k -lt $n; $k++) { [void]$itens.Add((NbtLe $b $et)) }
+        return @{ t = 9; et = $et; itens = $itens }
+    }
+    if ($t -eq 10) {
+        $campos = New-Object System.Collections.ArrayList
+        while ($true) {
+            $tt = [int]$b[$script:nbtI]; $script:nbtI = $script:nbtI + 1
+            if ($tt -eq 0) { break }
+            $nome = NbtLe $b 8
+            $val = NbtLe $b $tt
+            [void]$campos.Add(@{ t = $tt; nome = $nome; v = $val })
+        }
+        return @{ t = 10; campos = $campos }
+    }
+    throw ('tag NBT desconhecida: ' + $t)
+}
+function NbtEscreve($ms, $no) {
+    if ($no.t -eq 8) {
+        $n = $no.raw.Length
+        $ms.WriteByte([byte](($n -shr 8) -band 255)); $ms.WriteByte([byte]($n -band 255))
+        if ($n -gt 0) { $ms.Write($no.raw, 0, $n) }
+        return
+    }
+    if ($no.t -eq 9) {
+        $ms.WriteByte([byte]$no.et); $c = $no.itens.Count
+        foreach ($s in 24, 16, 8, 0) { $ms.WriteByte([byte](($c -shr $s) -band 255)) }
+        foreach ($it in $no.itens) { NbtEscreve $ms $it }
+        return
+    }
+    if ($no.t -eq 10) {
+        foreach ($c in $no.campos) { $ms.WriteByte([byte]$c.t); NbtEscreve $ms $c.nome; NbtEscreve $ms $c.v }
+        $ms.WriteByte(0)
+        return
+    }
+    if ($no.raw.Length -gt 0) { $ms.Write($no.raw, 0, $no.raw.Length) }
+}
+function NbtAbre([byte[]]$b) {
+    $script:nbtI = 1
+    $nome = NbtLe $b 8
+    $raiz = NbtLe $b ([int]$b[0])
+    return @{ t0 = [int]$b[0]; nome = $nome; raiz = $raiz }
+}
+function NbtBytes($doc) {
+    $ms = New-Object System.IO.MemoryStream
+    $ms.WriteByte([byte]$doc.t0); NbtEscreve $ms $doc.nome; NbtEscreve $ms $doc.raiz
+    return ,($ms.ToArray())
+}
+function NbtCampo($comp, [string]$nome) {
+    foreach ($c in $comp.campos) { if ($c.nome.txt -eq $nome) { return $c } }
+    return $null
+}
+function HostDe([string]$end) {
+    $h = $end.Trim()
+    if ($h.IndexOf(':') -ge 0 -and $h.IndexOf(':') -eq $h.LastIndexOf(':')) { $h = $h.Substring(0, $h.LastIndexOf(':')) }
+    return $h.TrimEnd('.').ToLower()
+}
+function XaeroPasta([string]$end) {
+    $h = HostDe $end
+    $h = $h.Replace(':', [string][char]0x00A7).Replace('_', '%us%').Replace('/', '%fs%').Replace('\', '%bs%')
+    return ('Multiplayer_' + $h)
+}
+function XaeroHost([string]$pasta) {
+    $h = $pasta.Substring('Multiplayer_'.Length)
+    return $h.Replace('%us%', '_').Replace([string][char]0x00A7, ':').Replace('%fs%', '/').Replace('%bs%', '\').ToLower()
+}
+function XaeroComBrothers([string]$tipo) {
+    $raiz = Join-Path (Join-Path $MC 'xaero') $tipo
+    $r = @()
+    if (-not (Test-Path -LiteralPath $raiz)) { return $r }
+    foreach ($d in (Get-ChildItem -LiteralPath $raiz -Directory -Filter 'Multiplayer_*' -ErrorAction SilentlyContinue)) {
+        $achou = $null
+        if ($tipo -eq 'minimap') {
+            $achou = Get-ChildItem -LiteralPath $d.FullName -Recurse -File -Filter ('mw$' + $XAERO_ID + '_*.txt') -ErrorAction SilentlyContinue |
+                     Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        } else {
+            $achou = Get-ChildItem -LiteralPath $d.FullName -Directory -ErrorAction SilentlyContinue |
+                     ForEach-Object { Get-ChildItem -LiteralPath $_.FullName -Directory -Filter ('mw$' + $XAERO_ID) -ErrorAction SilentlyContinue } |
+                     Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        }
+        if ($achou) { $r += @{ pasta = $d; quando = $achou.LastWriteTime } }
+    }
+    return $r
+}
+function ApontarServidor([string]$novo) {
+    $rel = @()
+    $nomeNovo = XaeroPasta $novo
+    $hostNovo = HostDe $novo
+    # hosts que HOJE guardam o mundo dos Brothers no Xaero (e por onde a pessoa entra)
+    $hosts = @()
+    foreach ($c in @(XaeroComBrothers 'minimap')) {
+        $h = XaeroHost $c.pasta.Name
+        if ($h -ne $hostNovo) { $hosts += $h }
+    }
+    $rel += ('hosts antigos do Brothers no Xaero: ' + ($hosts -join ', '))
+
+    # 1 - Xaero
+    foreach ($tipo in 'minimap', 'world-map') {
+        $cands = @(XaeroComBrothers $tipo)
+        $jaTem = $false
+        foreach ($c in $cands) { if ($c.pasta.Name -eq $nomeNovo) { $jaTem = $true } }
+        if ($jaTem) { $rel += ($tipo + ': ja existe em ' + $nomeNovo); continue }
+        $orig = $cands | Sort-Object { $_.quando } -Descending | Select-Object -First 1
+        if (-not $orig) { $rel += ($tipo + ': nada do Brothers pra copiar'); continue }
+        $dest = Join-Path (Join-Path (Join-Path $MC 'xaero') $tipo) $nomeNovo
+        & robocopy $orig.pasta.FullName $dest /E /XC /XN /XO /R:1 /W:1 /NFL /NDL /NJH /NJS /NP | Out-Null
+        if ($LASTEXITCODE -lt 8) { $rel += ($tipo + ': ' + $orig.pasta.Name + ' -> ' + $nomeNovo) }
+        else { throw ('robocopy falhou em ' + $tipo + ' (codigo ' + $LASTEXITCODE + ')') }
+    }
+
+    # 2 - servers.dat
+    $f = Join-Path $MC 'servers.dat'
+    if (Test-Path -LiteralPath $f) {
+        $doc = NbtAbre ([IO.File]::ReadAllBytes($f))
+    } else {
+        $doc = @{ t0 = 10; nome = (NbtStr ''); raiz = @{ t = 10; campos = (New-Object System.Collections.ArrayList) } }
+    }
+    $lista = NbtCampo $doc.raiz 'servers'
+    if (-not $lista) {
+        $lista = @{ t = 9; nome = (NbtStr 'servers'); v = @{ t = 9; et = 10; itens = (New-Object System.Collections.ArrayList) } }
+        [void]$doc.raiz.campos.Add($lista)
+    }
+    $itens = $lista.v.itens
+    $ja = $false; $alvo = $null; $porHost = @(); $porNome = @()
+    foreach ($s in $itens) {
+        if ($s.t -ne 10) { continue }
+        $ip = NbtCampo $s 'ip'; $nm = NbtCampo $s 'name'
+        if (-not $ip) { continue }
+        if ($ip.v.txt.Trim().ToLower() -eq $novo.Trim().ToLower()) { $ja = $true }
+        if ($hosts -contains (HostDe $ip.v.txt)) { $porHost += $s }
+        if ($nm -and $nm.v.txt -match 'brother') { $porNome += $s }
+    }
+    if ($ja) { $rel += 'servers.dat: ja aponta pro endereco novo'; return $rel }
+    if ($porHost.Count -eq 1) { $alvo = $porHost[0] }
+    elseif ($porHost.Count -gt 1) {
+        foreach ($s in $porHost) { if ((-not $alvo) -and ($porNome -contains $s)) { $alvo = $s } }
+    }
+    if ((-not $alvo) -and $porNome.Count -eq 1) { $alvo = $porNome[0] }
+    if ($alvo) {
+        $c = NbtCampo $alvo 'ip'; $antigo = $c.v.txt
+        $c.v = NbtStr $novo
+        $nm = NbtCampo $alvo 'name'; $rotulo = '?'
+        if ($nm) { $rotulo = $nm.v.txt }
+        $rel += ('servers.dat: "' + $rotulo + '" ' + $antigo + ' -> ' + $novo + ' (nome mantido = LOD do DH preservado)')
+    } else {
+        $novoS = @{ t = 10; campos = (New-Object System.Collections.ArrayList) }
+        [void]$novoS.campos.Add(@{ t = 8; nome = (NbtStr 'name'); v = (NbtStr 'Brothers (NeonHost)') })
+        [void]$novoS.campos.Add(@{ t = 8; nome = (NbtStr 'ip'); v = (NbtStr $novo) })
+        if ($itens.Count -eq 0) { $lista.v.et = 10 }
+        $itens.Insert(0, $novoS)
+        $rel += 'servers.dat: nao achei a entrada antiga -> criei "Brothers (NeonHost)" (LOD do DH comeca do zero)'
+    }
+    $bkp = $f + '.pre_launcher_v13'
+    if ((Test-Path -LiteralPath $f) -and -not (Test-Path -LiteralPath $bkp)) { Copy-Item -LiteralPath $f -Destination $bkp }
+    [IO.File]::WriteAllBytes($f, (NbtBytes $doc))
+    return $rel
+}
+
 # ---------------- AUTO-UPDATE do proprio launcher ----------------
 # baixa launcher.ps1 do GitHub; se a versao for maior, salva como
 # launcher.new.ps1 e o JOGAR.bat troca na proxima abertura.
@@ -172,6 +384,8 @@ try {
         # TODO download baixava certo e era rejeitado na conferencia de hash.
         if ($p[0] -eq 'MOD' -and $p.Count -ge 6) { $novoE += @{ n = $p[1]; sha = $p[2].Trim().ToLower(); url = $p[5].Trim() } }
         elseif ($p[0] -eq 'SAI' -and $p.Count -ge 2) { $novoS += $p[1] }
+        elseif ($p[0] -eq 'SERVIDOR' -and $p.Count -ge 2 -and $p[1].Trim() -ne '') { $SERVIDOR = $p[1].Trim() }
+        elseif ($p[0] -eq 'XAERO' -and $p.Count -ge 2 -and $p[1].Trim() -ne '') { $XAERO_ID = $p[1].Trim() }
     }
     if ($novoE.Count -gt 0) { $ENTRAM = $novoE; $SAEM = $novoS; $origemLista = 'GitHub' }
 } catch { }
@@ -258,7 +472,7 @@ if (-not $EU) {
     $op = '1'
     try {
         $op = [Microsoft.VisualBasic.Interaction]::InputBox(
-            "Quem esta neste computador?`n`n1 = Marcelo (Tensei)`n2 = Gabu (Gabutre)`n3 = Fabio (fabium)`n4 = Say (sayu)`n5 = Matheus (mmcadora)",
+            "Quem esta neste computador?`n`n1 = Marcelo (Tensei)`n2 = Gabu (Gabutre)`n3 = Fabio (fabium)`n4 = Say (sasayuyu)`n5 = Matheus (mmcadora)",
             'Primeira vez', '1')
     } catch {
         # se o InputBox nao existir nesta maquina, pergunta pelo console
@@ -269,6 +483,7 @@ if (-not $EU) {
     CfgGravar 'usuario' $env:USERNAME
 }
 $TSub.Text = "perfil: $EU   |   instalacao: $MC   |   lista: $origemLista   |   launcher v$VERSAO"
+if ($SERVIDOR) { $TSub.Text += "   |   servidor: $SERVIDOR" }
 
 # ---------------- mural e dica ----------------
 $meus = New-Object System.Collections.ArrayList
@@ -390,6 +605,20 @@ $w.Add_ContentRendered({
         }
     }
 
+    # R#156: so roda se o lista.txt tiver a linha SERVIDOR (dia da mudanca pro host)
+    $srvMsg = ''
+    if ($SERVIDOR) {
+        UI ('Apontando pro servidor novo: ' + $SERVIDOR + ' ...') 91
+        try {
+            foreach ($x in (ApontarServidor $SERVIDOR)) { Write-Host ('SERVIDOR: ' + $x) }
+            $srvMsg = "  ·  servidor: $SERVIDOR"
+        } catch {
+            $erro = $_.Exception.Message
+            Write-Host ('FALHA SERVIDOR: ' + $erro)
+            $falhas++; $motivos += ('servidor novo: ' + $erro)
+        }
+    }
+
     UI 'Ligando o teleporte do mapa com custo de XP...' 94
     foreach ($sub in @('config\xaero\world-map\profiles', 'config\xaero\minimap\profiles')) {
         $dir = Join-Path $MC $sub
@@ -416,7 +645,7 @@ $w.Add_ContentRendered({
         }
     }
 
-    $msg = "Pronto. baixados: $novos  ·  removidos: $rem  ·  DH consertado: $dhFix"
+    $msg = "Pronto. baixados: $novos  ·  removidos: $rem  ·  DH consertado: $dhFix" + $srvMsg
     if ($falhas -gt 0) { $msg += "  ·  $falhas falha(s): " + (($motivos | Select-Object -First 2) -join ' / ') }
     UI $msg 100
     if ($falhas -gt 0) {
