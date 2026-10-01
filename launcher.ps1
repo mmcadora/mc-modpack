@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 13   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 14   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -606,8 +606,9 @@ $w.Add_ContentRendered({
     }
 
     # R#156: so roda se o lista.txt tiver a linha SERVIDOR (dia da mudanca pro host)
+    # R#161 (v14): a linha SERVIDOR e do BROTHERS. A Say nao joga la -> nao mexe na lista nem no Xaero dela
     $srvMsg = ''
-    if ($SERVIDOR) {
+    if ($SERVIDOR -and $EU -ne 'say') {
         UI ('Apontando pro servidor novo: ' + $SERVIDOR + ' ...') 91
         try {
             foreach ($x in (ApontarServidor $SERVIDOR)) { Write-Host ('SERVIDOR: ' + $x) }
