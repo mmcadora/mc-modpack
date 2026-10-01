@@ -1,3 +1,9 @@
+marcelo	SERVIDOR NOVO dos Brothers: 45.146.81.206:25567, ligado 24h. Este launcher ja trocou o endereco na sua lista de servidores e copiou seus waypoints.
+marcelo	1a vez no servidor novo: no chat, /register SENHA SENHA (invente uma senha nova, igual 2x). Nas proximas: /login SENHA. Mesmo PC em 24h entra direto.
+gabu	SERVIDOR NOVO dos Brothers: 45.146.81.206:25567, ligado 24h. Este launcher ja trocou o endereco na sua lista de servidores e copiou seus waypoints.
+gabu	1a vez no servidor novo: no chat, /register SENHA SENHA (invente uma senha nova, igual 2x). Nas proximas: /login SENHA. Mesmo PC em 24h entra direto.
+fabio	SERVIDOR NOVO dos Brothers: 45.146.81.206:25567, ligado 24h. Este launcher ja trocou o endereco na sua lista de servidores e copiou seus waypoints.
+fabio	1a vez no servidor novo: no chat, /register SENHA SENHA (invente uma senha nova, igual 2x). Nas proximas: /login SENHA. Mesmo PC em 24h entra direto.
 todos	Rode este launcher ANTES de abrir o jogo, sempre. Com o Minecraft FECHADO.
 todos	NOVO: da pra teleportar clicando no mapa (M) ou num waypoint (U). Custa 3 niveis de XP, sempre.
 todos	Garrafa de XP: AGACHE (Shift) + clique direito com garrafa de vidro. Precisa ja ter 100 de XP bruto (nivel 8) senao nao acontece nada. Pra beber, SEGURA o clique direito.

@@ -1,4 +1,5 @@
-VERSAO	2026-09-30 5
+VERSAO	2026-10-01 6
+SERVIDOR	45.146.81.206:25567
 MOD	kubejs-fabric-2001.6.5-build.26.jar	08d70c86bb9501eeaf936722784c09de18f0e32f	0	todos	https://cdn.modrinth.com/data/umyGl7zF/versions/Pu0Ygbq6/kubejs-fabric-2001.6.5-build.26.jar
 MOD	rhino-fabric-2001.2.3-build.10.jar	a1fd74cf31c0bf959803870c1ac3d918ae66fc1e	0	todos	https://cdn.modrinth.com/data/sk9knFPE/versions/MLIu0Tct/rhino-fabric-2001.2.3-build.10.jar
 MOD	fpsdisplay-3.1.0+1.20.x.jar	aec4dc9e2105578dd463bd733725199e93857d9f	0	todos	https://cdn.modrinth.com/data/DIlqwRFH/versions/WaO5IB1q/fpsdisplay-3.1.0%2B1.20.x.jar
