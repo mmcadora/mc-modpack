@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 14   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 15   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -36,7 +36,7 @@ $ENTRAM = @(
   @{ n = 'Too Many Entities 1.20.1 Fabric v1.1.1.jar'; sha = '9c8a31a3d83c135865cae12a01d428fae3dc237c'; url = 'https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar' }
   @{ n = 'xmmp-0.3.2+1.20.1-fabric.jar'; sha = '5a70fa2c7411a4af03016aea8bf93f4c05b080f0'; url = 'https://cdn.modrinth.com/data/stTaMuWa/versions/Ofe69fhn/xmmp-0.3.2%2B1.20.1-fabric.jar' }
   @{ n = 'TaxFreeLevels-1.4.23-fabric-1.20.1.jar'; sha = '36a816dd8d1cc1e3f52d12793b5197339ad97cf2'; url = 'https://cdn.modrinth.com/data/jCBrrLTs/versions/R7TeQeOo/TaxFreeLevels-1.4.23-fabric-1.20.1.jar' }
-  @{ n = 'Controlling-fabric-1.20.1-12.0.2.jar'; sha = '8a61ca1600e33c73598530f1e208bb07081fdcd6'; url = 'https://cdn.modrinth.com/data/xv94TkTM/versions/RaJMVsRg/Controlling-fabric-1.20.1-12.0.2.jar' }
+  @{ n = 'Controlling-fabric-1.20.1-12.0.2.jar'; sha = '8d6badebb7f2aea04793c92174dafa946b13f1e9'; url = 'https://cdn.modrinth.com/data/xv94TkTM/versions/6ipZLQSK/Controlling-fabric-1.20.1-12.0.2.jar' }
   @{ n = 'Searchables-fabric-1.20.1-1.0.3.jar'; sha = 'd7cbd06088a90f8adfd4bb9a99d1c256bcdf22a1'; url = 'https://cdn.modrinth.com/data/fuuu3xnx/versions/eh4IBlu2/Searchables-fabric-1.20.1-1.0.3.jar' }
   @{ n = 'trashcans-1.1.1a-fabric-mc1.20.4.jar'; sha = 'c7b37868c9aae658cac9c578f7a520d089a3a822'; url = 'https://cdn.modrinth.com/data/4QrnfueM/versions/JJTVcWnj/trashcans-1.1.1a-fabric-mc1.20.4.jar' }
 )

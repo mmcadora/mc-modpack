@@ -1,4 +1,4 @@
-VERSAO	2026-10-01 6
+VERSAO	2026-10-01 7
 SERVIDOR	45.146.81.206:25567
 MOD	kubejs-fabric-2001.6.5-build.26.jar	08d70c86bb9501eeaf936722784c09de18f0e32f	0	todos	https://cdn.modrinth.com/data/umyGl7zF/versions/Pu0Ygbq6/kubejs-fabric-2001.6.5-build.26.jar
 MOD	rhino-fabric-2001.2.3-build.10.jar	a1fd74cf31c0bf959803870c1ac3d918ae66fc1e	0	todos	https://cdn.modrinth.com/data/sk9knFPE/versions/MLIu0Tct/rhino-fabric-2001.2.3-build.10.jar
@@ -10,7 +10,7 @@ MOD	portablespawner-fabric-1.20.1-1.0.1.jar	df1a9b5ac9252c914a1a9057234133796630
 MOD	Too Many Entities 1.20.1 Fabric v1.1.1.jar	9c8a31a3d83c135865cae12a01d428fae3dc237c	0	todos	https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar
 MOD	xmmp-0.3.2+1.20.1-fabric.jar	5a70fa2c7411a4af03016aea8bf93f4c05b080f0	0	todos	https://cdn.modrinth.com/data/stTaMuWa/versions/Ofe69fhn/xmmp-0.3.2%2B1.20.1-fabric.jar
 MOD	TaxFreeLevels-1.4.23-fabric-1.20.1.jar	36a816dd8d1cc1e3f52d12793b5197339ad97cf2	0	todos	https://cdn.modrinth.com/data/jCBrrLTs/versions/R7TeQeOo/TaxFreeLevels-1.4.23-fabric-1.20.1.jar
-MOD	Controlling-fabric-1.20.1-12.0.2.jar	8a61ca1600e33c73598530f1e208bb07081fdcd6	0	todos	https://cdn.modrinth.com/data/xv94TkTM/versions/RaJMVsRg/Controlling-fabric-1.20.1-12.0.2.jar
+MOD	Controlling-fabric-1.20.1-12.0.2.jar	8d6badebb7f2aea04793c92174dafa946b13f1e9	0	todos	https://cdn.modrinth.com/data/xv94TkTM/versions/6ipZLQSK/Controlling-fabric-1.20.1-12.0.2.jar
 MOD	Searchables-fabric-1.20.1-1.0.3.jar	d7cbd06088a90f8adfd4bb9a99d1c256bcdf22a1	0	todos	https://cdn.modrinth.com/data/fuuu3xnx/versions/eh4IBlu2/Searchables-fabric-1.20.1-1.0.3.jar
 MOD	trashcans-1.1.1a-fabric-mc1.20.4.jar	c7b37868c9aae658cac9c578f7a520d089a3a822	0	todos	https://cdn.modrinth.com/data/4QrnfueM/versions/JJTVcWnj/trashcans-1.1.1a-fabric-mc1.20.4.jar
 SAI	emi-1.1.24+1.20.1+fabric.jar
