@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 15   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 16   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -58,6 +58,7 @@ $DHPERFIL = @{
   marcelo = @{ radius = 192; res = 'BLOCK'; threads = 6; ratio = '0.8' }
   gabu = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }
   fabio = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }
+  dahmer = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }   # R#163: PC dele desconhecido -> perfil medio
   say = @{ radius = 96; res = 'FOUR_BLOCKS'; threads = 2; ratio = '0.4' }
   matheus = @{ radius = 256; res = 'BLOCK'; threads = 8; ratio = '0.9' }
 }
@@ -472,13 +473,13 @@ if (-not $EU) {
     $op = '1'
     try {
         $op = [Microsoft.VisualBasic.Interaction]::InputBox(
-            "Quem esta neste computador?`n`n1 = Marcelo (Tensei)`n2 = Gabu (Gabutre)`n3 = Fabio (fabium)`n4 = Say (sasayuyu)`n5 = Matheus (mmcadora)",
+            "Quem esta neste computador?`n`n1 = Marcelo (Tensei)`n2 = Gabu (Gabutre)`n3 = Fabio (fabium)`n4 = Say (sasayuyu)`n5 = Matheus (mmcadora)`n6 = Dahmer (dahmerdummer420)",
             'Primeira vez', '1')
     } catch {
         # se o InputBox nao existir nesta maquina, pergunta pelo console
-        $op = Read-Host 'Quem e voce? 1=Marcelo 2=Gabu 3=Fabio 4=Say 5=Matheus'
+        $op = Read-Host 'Quem e voce? 1=Marcelo 2=Gabu 3=Fabio 4=Say 5=Matheus 6=Dahmer'
     }
-    switch ($op) { '1'{$EU='marcelo'} '2'{$EU='gabu'} '3'{$EU='fabio'} '4'{$EU='say'} '5'{$EU='matheus'} default{$EU='todos'} }
+    switch ($op) { '1'{$EU='marcelo'} '2'{$EU='gabu'} '3'{$EU='fabio'} '4'{$EU='say'} '5'{$EU='matheus'} '6'{$EU='dahmer'} default{$EU='todos'} }
     CfgGravar 'perfil' $EU
     CfgGravar 'usuario' $env:USERNAME
 }

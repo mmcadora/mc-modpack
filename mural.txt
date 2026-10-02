@@ -1,3 +1,5 @@
+dahmer	Bem-vindo de volta! Servidor dos Brothers agora fica ligado 24h: 45.146.81.206:25567. O launcher ja poe ele na sua lista.
+dahmer	1a vez: no chat, /register SENHA SENHA (invente uma senha nova, igual 2x). Nas proximas: /login SENHA. Seu nick tem que ser EXATAMENTE dahmerdummer420.
 marcelo	SERVIDOR NOVO dos Brothers: 45.146.81.206:25567, ligado 24h. Este launcher ja trocou o endereco na sua lista de servidores e copiou seus waypoints.
 marcelo	1a vez no servidor novo: no chat, /register SENHA SENHA (invente uma senha nova, igual 2x). Nas proximas: /login SENHA. Mesmo PC em 24h entra direto.
 gabu	SERVIDOR NOVO dos Brothers: 45.146.81.206:25567, ligado 24h. Este launcher ja trocou o endereco na sua lista de servidores e copiou seus waypoints.
