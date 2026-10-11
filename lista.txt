@@ -1,4 +1,4 @@
-VERSAO	2026-10-01 7
+VERSAO	2026-10-11 8
 SERVIDOR	45.146.81.206:25567
 MOD	kubejs-fabric-2001.6.5-build.26.jar	08d70c86bb9501eeaf936722784c09de18f0e32f	0	todos	https://cdn.modrinth.com/data/umyGl7zF/versions/Pu0Ygbq6/kubejs-fabric-2001.6.5-build.26.jar
 MOD	rhino-fabric-2001.2.3-build.10.jar	a1fd74cf31c0bf959803870c1ac3d918ae66fc1e	0	todos	https://cdn.modrinth.com/data/sk9knFPE/versions/MLIu0Tct/rhino-fabric-2001.2.3-build.10.jar
@@ -13,6 +13,8 @@ MOD	TaxFreeLevels-1.4.23-fabric-1.20.1.jar	36a816dd8d1cc1e3f52d12793b5197339ad97
 MOD	Controlling-fabric-1.20.1-12.0.2.jar	8d6badebb7f2aea04793c92174dafa946b13f1e9	0	todos	https://cdn.modrinth.com/data/xv94TkTM/versions/6ipZLQSK/Controlling-fabric-1.20.1-12.0.2.jar
 MOD	Searchables-fabric-1.20.1-1.0.3.jar	d7cbd06088a90f8adfd4bb9a99d1c256bcdf22a1	0	todos	https://cdn.modrinth.com/data/fuuu3xnx/versions/eh4IBlu2/Searchables-fabric-1.20.1-1.0.3.jar
 MOD	trashcans-1.1.1a-fabric-mc1.20.4.jar	c7b37868c9aae658cac9c578f7a520d089a3a822	0	todos	https://cdn.modrinth.com/data/4QrnfueM/versions/JJTVcWnj/trashcans-1.1.1a-fabric-mc1.20.4.jar
+MOD	shulkerboxtooltip-fabric-4.0.4+1.20.1.jar	40b822aeed9de6aec3c872af9be2ba17b3867482	0	todos	https://cdn.modrinth.com/data/2M01OLQq/versions/gVxjsEiQ/shulkerboxtooltip-fabric-4.0.4%2B1.20.1.jar
+MOD	copperagebackport-fabric-1.20.1-0.1.5.1-pre.jar	ed28e9eaa53d19b1cdd1f05f569ba6c28224ef98	0	todos	https://cdn.modrinth.com/data/a1llHwl4/versions/jd5L8iw0/copperagebackport-fabric-1.20.1-0.1.5.1-pre.jar
 SAI	emi-1.1.24+1.20.1+fabric.jar
 SAI	nearbycrafting-1.0.3.jar
 SAI	recipebookaccess-1.1.0.jar
