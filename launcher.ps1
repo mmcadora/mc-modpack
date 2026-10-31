@@ -19,7 +19,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 16   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 17   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 # >>>>>>  O MATHEUS PREENCHE ESTA LINHA DEPOIS DE CRIAR O REPO  <<<<<<
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -647,13 +647,45 @@ $w.Add_ContentRendered({
         }
     }
 
-    $msg = "Pronto. baixados: $novos  ·  removidos: $rem  ·  DH consertado: $dhFix" + $srvMsg
+    # R#242 (v17, P119): confere os mods do pacote (os que NAO vem pelo lista.txt) pelo nome do arquivo.
+    #   So AVISA (no fim e no ultimo-run.log): nao apaga nem baixa nada. Lista: pacote.txt no GitHub.
+    UI 'Conferindo os mods do pacote...' 96
+    $pacMsg = ''
+    try {
+        $pac = Baixar 'pacote.txt'
+        $grupo = 'b'
+        if ($EU -eq 'say') { $grupo = 's' }
+        if ($EU -eq 'matheus') { $grupo = '' }
+        $esperados = @()
+        foreach ($l in ($pac -split "`r?`n")) {
+            $p = $l -split "`t"
+            if ($p[0] -ne 'PAC' -or $p.Count -lt 3) { continue }
+            if ($grupo -eq '' -or (($p[1] -split ',') -contains $grupo)) { $esperados += $p[2].Trim() }
+        }
+        if ($esperados.Count -gt 0) {
+            $tem = @{}
+            foreach ($v in (Get-ChildItem -LiteralPath $MODS -Filter '*.jar')) { $tem[$v.Name] = $true }
+            $esp = @{}
+            foreach ($e in $esperados) { $esp[$e] = $true }
+            foreach ($m in $ENTRAM) { $esp[$m.n] = $true }
+            $faltam = @($esperados | Where-Object { -not $tem.ContainsKey($_) })
+            $sobram = @($tem.Keys | Where-Object { -not $esp.ContainsKey($_) })
+            foreach ($x in $faltam) { Write-Host ('PACOTE FALTANDO: ' + $x) }
+            foreach ($x in $sobram) { Write-Host ('PACOTE SOBRANDO: ' + $x) }
+            $pacMsg = '  ·  pacote: ' + ($esperados.Count - $faltam.Count) + '/' + $esperados.Count
+            if ($faltam.Count -gt 0) { $pacMsg += ' (FALTAM ' + $faltam.Count + ')' }
+            if ($sobram.Count -gt 0) { $pacMsg += ' (+' + $sobram.Count + ' a mais)' }
+        }
+    } catch { Write-Host ('PACOTE: nao conferido - ' + $_.Exception.Message) }
+
+    $msg = "Pronto. baixados: $novos  ·  removidos: $rem  ·  DH consertado: $dhFix" + $srvMsg + $pacMsg
     if ($falhas -gt 0) { $msg += "  ·  $falhas falha(s): " + (($motivos | Select-Object -First 2) -join ' / ') }
     UI $msg 100
     if ($falhas -gt 0) {
         $TRodape.Text = "NAO ENTRE NO SERVIDOR. Manda o _LAUNCHER\ultimo-run.log pro Matheus."
     } else {
-        $TRodape.Text = "log completo em _LAUNCHER\ultimo-run.log"
+        if ($pacMsg -like '*FALTAM*') { $TRodape.Text = "Falta mod do pacote: manda o _LAUNCHER\ultimo-run.log pro Matheus antes de entrar." }
+        else { $TRodape.Text = "log completo em _LAUNCHER\ultimo-run.log" }
     }
     $BJogar.IsEnabled = $true
 })
