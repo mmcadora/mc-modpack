@@ -1,32 +1,41 @@
-Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa 3 niveis, sempre - perto, longe ou entre dimensoes.
-CRIAR garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro na mao. Voce precisa JA TER 100 de XP bruto guardado (nivel 8 saindo do zero). Com menos que isso nao acontece NADA, sem mensagem nenhuma - nao esta bugado.
-Se a garrafa de XP der pouco nivel, e o MENDING: o XP conserta seu equipamento antes de virar experiencia. Pra guardar nivel, bebe DESEQUIPADO.
-BEBER garrafa de XP: SEGURA o clique direito, nao clica rapido. Leva 0,4s e devolve a garrafa de vidro vazia.
-Beber AGACHADO bebe a PILHA TODA de uma vez. Em pe, bebe uma garrafa so. Cuidado com 30 garrafas na mao.
-A garrafa devolve exatamente os 100 de XP que custou. Ela e um cofre de XP, nao uma fonte - serve pra nao perder XP ao morrer.
-100 de XP bruto e meio nivel no nivel 20 e um terco de nivel no nivel 50. Nao esta rendendo menos, e a curva do Minecraft que sobe.
-A garrafa de XP se BEBE, nao se joga no chao. Jogar no chao perde quase tudo.
-A garrafa de XP nao funciona se o meio coracao de dano te mataria. Cura primeiro.
-Morreu longe? Abre a bussola da morte e paga 3 niveis pra voltar. Fica 5s parado e chega com 15s de invencibilidade.
-Nao quer se teleportar pro tumulo? /graves list, clica no tumulo e usa FETCH: traz as coisas ate voce, de graca.
-Maca dourada encantada tem receita neste modpack, e devolve 3 coracoes de vida maxima.
-O Bundle voltou: 3 linha em cima, 6 couro embaixo.
-Item no chao dura 15 min. Os valiosos nao somem nunca. Lixo (pedra, terra, semente, ovo) some em 1-2 min.
-O mapa do Xaero e COMPARTILHADO: o que um explora aparece no mapa dos outros.
-Da pra pegar spawner e levar junto (PortableSpawner).
-Perto de farm com muito mob, o Too Many Entities esconde o excesso pra ganhar FPS. Configuravel no Mod Menu.
-O servidor dos Brothers tem Bumblezone e Otherside (Deeper Dark) gerados. Ja foi?
-O Ancient City mais perto da base dos Brothers fica em X -264 Z 504.
-Tem 4 Void Blossom no mapa dos Brothers. O mais perto: X -680 Z 328.
-3 Gauntlet no Nether dos Brothers: -280/-792, -872/-296, -952/-872.
-O Stalker do Deeper Dark ja tem templo gerado no Otherside.
-A Cornelia (chefe do Aquamirae) vive no labirinto de gelo, no fundo do oceano frio.
-Barco de obsidiana anda na LAVA. Nao flutua em agua.
-O IPN tem 5 perfis de inventario com tecla rapida: Combate, Mineracao, Exploracao.
-Da pra travar um slot do inventario (IPN) e a ordenacao automatica pula ele.
-Tem lista de tarefas compartilhada no servidor (TeamTasks): o que um cria, os outros veem.
-Da pra juntar 3 pocoes numa Potion Blending Combiner.
-2 slabs iguais viram bloco cheio de volta (Deslabification).
-Se voce roda Chunky e voa ao mesmo tempo, o Distant Horizons deixa buracos no terreno.
-O primeiro boot depois de atualizar o Distant Horizons e lento: ele converte o banco de terreno. Deixa terminar.
-Nao mexa nas opcoes do Distant Horizons por conta propria - tem um perfil pronto pra sua maquina.
+# Dicas do launcher v18 (R#254). Formato: GRUPO<TAB>texto  ·  t = todos · b = quem joga no Brothers · s = a Say. Linha com # e ignorada.
+t	Teleporte: clique direito no mapa (M) ou num waypoint (U). Custa 3 níveis, sempre: perto, longe ou entre dimensões.
+t	Garrafa de XP: AGACHADO (Shift) + clique direito com garrafa de vidro na mão. Precisa já ter 100 de XP bruto (nível 8 saindo do zero); com menos, não acontece nada e não aparece mensagem.
+t	Garrafa de XP rendeu pouco? É o Mending consertando seu equipamento antes. Pra guardar nível, bebe DESEQUIPADO.
+t	Beber garrafa de XP: SEGURA o clique direito (leva 0,4 s). Agachado bebe a pilha toda de uma vez.
+t	A garrafa de XP devolve exatamente os 100 de XP que custou: é cofre, não fonte. Serve pra não perder XP ao morrer.
+t	100 de XP bruto é meio nível no nível 20 e um terço de nível no 50. Não está rendendo menos: é a curva do Minecraft.
+t	Garrafa de XP se bebe, não se joga: jogar no chão perde quase tudo.
+t	A garrafa de XP não sai se o meio coração de dano te mataria. Cura primeiro.
+t	Morreu longe? Abre a bússola da morte e paga 3 níveis pra voltar. Fica 5 s parado e chega com 15 s de invencibilidade.
+t	Item no chão: valioso (diamante, netherite, encantado, equipamento de chefe, shulker) nunca some. Lixo (pedra, terra, areia, semente, graveto) some em 30 s a 3 min. O resto dura 15 min.
+t	Bundle: na bancada, 3 linhas na fileira de cima e 6 couros nas duas de baixo.
+b	Maçã dourada encantada: maçã dourada no centro, pérola do End em cima, 4 blocos de ferro dos lados e 3 blocos de ouro embaixo. Devolve 3 corações de vida máxima.
+b	Maçã encantada sem ouro: maçã dourada + 1 drop de chefe (Heart of the Deep, Soul Crystal, Ancient Anima, Crystal Fruit, Void Thorn ou Treasure Pouch), em qualquer posição.
+t	Poção acima do vanilla: na bancada, poção forte + 1 Essência de Chefe = 1 nível acima (Força e Velocidade até IV, Regeneração e Cura até III).
+t	Poção do Mestre Tartaruga + 1 Essência de Chefe = Resistência sem a lentidão. Mais Essência sobe até Resistência III.
+t	Poção feita com Essência não pode voltar pro suporte de poções: o jogo refaz a poção e ela perde o efeito.
+t	Essência de Chefe: chefe com Ascensão I ou mais dá Essências pra CADA um que bateu nele (Ascensão X = 10 cada).
+t	Waystone, sharestone, warp plate e pergaminho não têm receita aqui: só achando no mundo.
+t	Bússola do Explorador (acha estrutura): bússola no centro, 4 tijolos de pedra rachados nos lados e 4 teias nos cantos.
+t	Molde de melhoria do Warden duplica: molde em cima, sculk no centro e 7 diamantes em volta = 2 moldes.
+t	Barco de obsidiana anda na LAVA e não flutua em água. Receita: 5 obsidianas no formato de barco.
+t	Potion Blending Combiner junta 3 poções numa só. Receita: suporte de poções no centro e 7 lingotes de ferro em volta (o do meio de cima fica vazio).
+t	Netherrack no forno (ou no alto-forno) vira tijolo do Nether.
+t	Pra entrar na Bumblezone: jogue uma pérola do End numa colmeia ou num ninho de abelha.
+t	O mapa do Xaero é COMPARTILHADO: o que um explora aparece no mapa dos outros.
+t	Dá pra pegar spawner e levar junto (PortableSpawner).
+t	Perto de farm com muito mob, o Too Many Entities esconde o excesso pra ganhar FPS. Configurável no Mod Menu.
+t	O IPN tem 5 perfis de inventário com tecla rápida: Combate, Mineração, Exploração.
+t	Dá pra travar um slot do inventário (IPN) e a ordenação automática pula ele.
+t	Tem lista de tarefas compartilhada no servidor (TeamTasks): o que um cria, os outros veem.
+t	2 lajes iguais viram bloco cheio de volta (Deslabification).
+t	A Cornelia (chefe do Aquamirae) vive no labirinto de gelo, no fundo do oceano frio.
+b	O Brothers tem Bumblezone e Otherside (Deeper Dark) gerados. Já foi?
+b	A Ancient City mais perto da base velha (X 151 Z 396) fica em X -264 Z 504.
+b	Tem 4 Void Blossom no mapa dos Brothers. O mais perto da base velha: X -680 Z 328.
+b	3 Gauntlet no Nether dos Brothers: -280/-792, -872/-296, -952/-872.
+b	O Stalker do Deeper Dark já tem templo gerado no Otherside.
+t	Se você roda Chunky e voa ao mesmo tempo, o Distant Horizons deixa buracos no terreno.
+t	O primeiro boot depois de atualizar o Distant Horizons é lento: ele converte o banco de terreno. Deixa terminar.
+t	Não mexa nas opções do Distant Horizons por conta própria: tem um perfil pronto pra sua máquina.
