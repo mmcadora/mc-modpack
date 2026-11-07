@@ -1,5 +1,7 @@
 ﻿# ================================================================
-#   LAUNCHER DO MODPACK DOS BROTHERS  -  v18 (R#254)
+#   LAUNCHER DO MODPACK DOS BROTHERS  -  v19 (R#259)
+#   v19: lista.txt traz todos os 162 mods (148 Modrinth + 14 em jars/)
+#   filtrados pelo grupo da coluna 5 (todos/b/s).
 #   Mora em  .minecraft\_LAUNCHER\  e acha a instalacao subindo
 #   um nivel. Se atualiza sozinho a partir do GitHub.
 #   v18: visual "Minecraft raiz" (texturas lidas do jar do jogo de
@@ -27,7 +29,7 @@ Add-Type -AssemblyName PresentationFramework -ErrorAction Stop
 Add-Type -AssemblyName PresentationCore, WindowsBase -ErrorAction SilentlyContinue
 Add-Type -AssemblyName Microsoft.VisualBasic -ErrorAction SilentlyContinue
 
-$VERSAO = 18   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
+$VERSAO = 19   # sobe a cada mudanca minha; o auto-update compara com o do GitHub
 $BASE_URL = 'https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main'
 Write-Host ('LAUNCHER v' + $VERSAO + ' · ' + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') + ' · ' + $env:USERNAME)
 
@@ -67,7 +69,7 @@ $DHPERFIL = @{
   fabio = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }
   dahmer = @{ radius = 128; res = 'TWO_BLOCKS'; threads = 3; ratio = '0.6' }   # R#163: PC dele desconhecido -> perfil medio
   say = @{ radius = 96; res = 'FOUR_BLOCKS'; threads = 2; ratio = '0.4' }
-  matheus = @{ radius = 256; res = 'BLOCK'; threads = 8; ratio = '0.9' }
+  matheus = @{ radius = 256; res = 'BLOCK'; threads = 4; ratio = '0.65' }
 }
 # nome antigo da pasta de LOD (campo "effects") -> nome novo (caminho da dimensao)
 $DHNOMES = @{
@@ -1307,6 +1309,11 @@ function EscolherSK {
 
 # ---------------- o trabalho ----------------
 function BaixarArquivo([string]$url, [string]$dest) {
+    $prefJars = $BASE_URL.TrimEnd('/') + '/jars/'
+    if ($url.StartsWith($prefJars)) {
+        $locJar = Join-Path (Join-Path $PUBLICO 'jars') ($url.Substring($prefJars.Length))
+        if (Test-Path -LiteralPath $locJar) { Copy-Item -LiteralPath $locJar -Destination $dest -Force; return }
+    }
     $wc = New-Object Net.WebClient
     $wc.Headers.Add('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) launcher-brothers')
     $t = $wc.DownloadFileTaskAsync($url, $dest)
@@ -1371,7 +1378,14 @@ function TrabalhoDentro {
         $novoE = @(); $novoS = @()
         foreach ($l in ($lis.txt -split "`r?`n")) {
             $p = $l -split "`t"
-            if ($p[0] -eq 'MOD' -and $p.Count -ge 6) { $novoE += @{ n = $p[1]; sha = $p[2].Trim().ToLower(); url = $p[5].Trim() } }
+            if ($p[0] -eq 'MOD' -and $p.Count -ge 6) {
+                $gp = $p[4].Trim().ToLower(); $meuGp = GrupoDoPerfil
+                if ($gp -eq 'todos' -or $gp -eq 't' -or $gp -eq '*' -or $meuGp -eq '*' -or (($gp -split ',') -contains $meuGp)) {
+                    $novoE += @{ n = $p[1]; sha = $p[2].Trim().ToLower(); url = $p[5].Trim() }
+                } else {
+                    $novoS += $p[1]
+                }
+            }
             elseif ($p[0] -eq 'SAI' -and $p.Count -ge 2) { $novoS += $p[1] }
             elseif ($p[0] -eq 'SERVIDOR' -and $p.Count -ge 2 -and $p[1].Trim() -ne '') { $script:SERVIDOR = $p[1].Trim() }
             elseif ($p[0] -eq 'XAERO' -and $p.Count -ge 2 -and $p[1].Trim() -ne '') { $script:XAERO_ID = $p[1].Trim() }
