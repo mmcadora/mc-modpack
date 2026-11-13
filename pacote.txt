@@ -1,4 +1,4 @@
-VERSAO	2026-11-07 1
+VERSAO	2026-11-12 1
 # R#242 (P119): mods que cada perfil tem que ter (gerado dos _PACOTE-*). grupos: b = Brothers (marcelo/gabu/fabio/dahmer), s = Say. O launcher so AVISA.
 PAC	b,s	AmbientSounds_FABRIC_v6.3.11_mc1.20.1.jar
 PAC	b,s	animal_feeding_trough-1.1.0+1.20.1.jar
@@ -91,7 +91,6 @@ PAC	b,s	lithium-fabric-mc1.20.1-0.11.4.jar
 PAC	b,s	lithostitched-fabric-1.20.1-1.4.11.jar
 PAC	b,s	logcleaner-1.0.0.jar
 PAC	b,s	maps3d_1.0.0-1.20.1-fabric.jar
-PAC	b,s	mapsyncer-1.0.3-fabric-1.20.1.jar
 PAC	b	mediumcore-fabric-1.0.0+1.20.1.jar
 PAC	b,s	midnightlib-fabric-1.9.3+1.20.1.jar
 PAC	b,s	misctweaks-1.2.9+1.20.1-fabric.jar

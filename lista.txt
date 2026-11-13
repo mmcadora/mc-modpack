@@ -1,4 +1,4 @@
-VERSAO	2026-11-07 1
+VERSAO	2026-11-12 1
 MOD	AmbientSounds_FABRIC_v6.3.11_mc1.20.1.jar	0a1875ca8c166263bd0ed601cae6a1ec5d95a633	0	todos	https://cdn.modrinth.com/data/fM515JnW/versions/skzzVNCx/AmbientSounds_FABRIC_v6.3.11_mc1.20.1.jar
 MOD	animal_feeding_trough-1.1.0+1.20.1.jar	48a06994464e0e9e1751676de15b2eecccfd8ad4	0	todos	https://cdn.modrinth.com/data/bRFWnJ87/versions/WkJeqkhZ/animal_feeding_trough-1.1.0%2B1.20.1.jar
 MOD	appleskin-fabric-mc1.20.1-2.5.2.jar	f859bb13130788ae2dc2e76a9c80c89e4bbbef5f	0	todos	https://cdn.modrinth.com/data/EsAfCjCV/versions/N5XeV21r/appleskin-fabric-mc1.20.1-2.5.2.jar
@@ -90,7 +90,6 @@ MOD	lithium-fabric-mc1.20.1-0.11.4.jar	048227ed60a3005cf9fa55880dfe0cf20b0ba680	
 MOD	lithostitched-fabric-1.20.1-1.4.11.jar	c5e75450633aa9f79f2023e897c2726ba5f8d808	0	todos	https://cdn.modrinth.com/data/XaDC71GB/versions/9bbVphAR/lithostitched-fabric-1.20.1-1.4.11.jar
 MOD	logcleaner-1.0.0.jar	d5ad1da47cd99118a768f60a7d00481ab10bc4f5	0	todos	https://cdn.modrinth.com/data/hwRo6mwQ/versions/wrFyE1h4/logcleaner-1.0.0.jar
 MOD	maps3d_1.0.0-1.20.1-fabric.jar	2def6e7157ae0eb63f740ad8df4a2102131654fd	0	todos	https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main/jars/maps3d_1.0.0-1.20.1-fabric.jar
-MOD	mapsyncer-1.0.3-fabric-1.20.1.jar	c725b5e7079d7fe0c42fbc3a7a628c269a1c9784	0	todos	https://cdn.modrinth.com/data/AW5A8Q2T/versions/pEx7Onlg/mapsyncer-1.0.3-fabric-1.20.1.jar
 MOD	mediumcore-fabric-1.0.0+1.20.1.jar	0d9e4e248ee0d99cca1fa362adf1c458485cff1b	0	b	https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main/jars/mediumcore-fabric-1.0.0-1.20.1.jar
 MOD	midnightlib-fabric-1.9.3+1.20.1.jar	fe3ad2975295cf1c5eaa47b83d84a9c7a4c00f8f	0	todos	https://cdn.modrinth.com/data/codAaoxh/versions/rXX4FCV8/midnightlib-fabric-1.9.3%2B1.20.1.jar
 MOD	misctweaks-1.2.9+1.20.1-fabric.jar	eb6f2e8dcd0e4eb1f2bb022cd6ce2afc8eb487a6	0	todos	https://cdn.modrinth.com/data/9sMkzzYU/versions/tBPZHkqR/misctweaks-1.2.9%2B1.20.1-fabric.jar
@@ -169,3 +168,4 @@ SAI	trashcans-1.1.0-fabric-mc1.20.4.jar
 SAI	EasyAnvils-v8.0.2-1.20.1-Fabric.jar
 SAI	shulkerboxtooltip-fabric-4.0.4+1.20.1.jar
 SAI	Cull Less Leaves-1.4.2+1.21-fabric.jar
+SAI	mapsyncer-1.0.3-fabric-1.20.1.jar
