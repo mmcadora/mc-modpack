@@ -140,7 +140,6 @@ PAC	b,s	Terralith_1.20.x_v2.5.4.jar
 PAC	b,s	the_bumblezone-7.13.4+1.20.1-fabric.jar
 PAC	b,s	The_Graveyard_3.1_(FABRIC)_for_1.20.1.jar
 PAC	b,s	thenetherdungeons-0.2-1.20.1-1.20.4.jar
-PAC	b,s	todolist-fabric-1.20.1-1.4.2.jar
 PAC	b,s	Too Many Entities 1.20.1 Fabric v1.1.1.jar
 PAC	b,s	trashcans-1.1.1a-fabric-mc1.20.4.jar
 PAC	b,s	trenzalore-fabric-3.3.10+mc1.20.1.jar

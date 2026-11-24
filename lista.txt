@@ -139,7 +139,6 @@ MOD	Terralith_1.20.x_v2.5.4.jar	79e1409b8db4ce86df9d6d6730f09c4bd8860a30	0	todos
 MOD	the_bumblezone-7.13.4+1.20.1-fabric.jar	ed2f73e51e507189d6973c2e354c2decbc240902	0	todos	https://cdn.modrinth.com/data/eA8SXqWL/versions/4Evf64bi/the_bumblezone-7.13.4%2B1.20.1-fabric.jar
 MOD	The_Graveyard_3.1_(FABRIC)_for_1.20.1.jar	a5cb5de7f0cb9931cae5526eb310e4c3017b7cfe	0	todos	https://cdn.modrinth.com/data/QivVPB8W/versions/Hpn2GMza/The_Graveyard_3.1_%28FABRIC%29_for_1.20.1.jar
 MOD	thenetherdungeons-0.2-1.20.1-1.20.4.jar	25abf70be4bdbc8948f344e0b6d5e5c7d5ddb8c6	0	todos	https://cdn.modrinth.com/data/FKFkv3he/versions/eCOsmjmK/thenetherdungeons-0.2-1.20.1-1.20.4.jar
-MOD	todolist-fabric-1.20.1-1.4.2.jar	5e30a1a2d54b29f652bf199466008f7ed51c4b81	0	todos	https://cdn.modrinth.com/data/RcGBxDyt/versions/QlROBsNL/todolist-fabric-1.20.1-1.4.2.jar
 MOD	Too Many Entities 1.20.1 Fabric v1.1.1.jar	9c8a31a3d83c135865cae12a01d428fae3dc237c	0	todos	https://cdn.modrinth.com/data/BvnRxzIF/versions/TVYzh7G6/Too%20Many%20Entities%201.20.1%20Fabric%20v1.1.1.jar
 MOD	trashcans-1.1.1a-fabric-mc1.20.4.jar	c7b37868c9aae658cac9c578f7a520d089a3a822	0	todos	https://cdn.modrinth.com/data/4QrnfueM/versions/JJTVcWnj/trashcans-1.1.1a-fabric-mc1.20.4.jar
 MOD	trenzalore-fabric-3.3.10+mc1.20.1.jar	35a5f279d7de5eda456846ab238dc40c73da27b4	0	todos	https://raw.githubusercontent.com/mmcadora/mc-modpack/refs/heads/main/jars/trenzalore-fabric-3.3.10-mc1.20.1.jar
@@ -169,3 +168,4 @@ SAI	EasyAnvils-v8.0.2-1.20.1-Fabric.jar
 SAI	shulkerboxtooltip-fabric-4.0.4+1.20.1.jar
 SAI	Cull Less Leaves-1.4.2+1.21-fabric.jar
 SAI	mapsyncer-1.0.3-fabric-1.20.1.jar
+SAI	todolist-fabric-1.20.1-1.4.2.jar
